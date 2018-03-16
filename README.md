@@ -1,5 +1,8 @@
 # Python LinkedIn
 
+Forked and converted to python3.
+
+
 Python interface to the LinkedIn API
 
 [![LinkedIn](http://developer.linkedin.com/sites/default/files/LinkedIn_Logo60px.png)](http://developer.linkedin.com)
@@ -82,7 +85,7 @@ authentication = linkedin.LinkedInAuthentication(API_KEY, API_SECRET, RETURN_URL
 # It can be used to track your user state or something else (it's up to you)
 # Be aware that this value is sent to OAuth server AS IS - make sure to encode or hash it
 #authorization.state = 'your_encoded_message'
-print authentication.authorization_url  # open this url on your browser
+print(authentication.authorization_url)  # open this url on your browser
 application = linkedin.LinkedInApplication(authentication)
 ```
 When you grant access to the application, you will be redirected to the return url with the following query strings appended to your **RETURN_URL**:
@@ -385,7 +388,7 @@ There are many network update types. You can look at them by importing **NETWORK
 
 ```python
 from linkedin.linkedin import NETWORK_UPDATES
-print NETWORK_UPDATES.enums
+print(NETWORK_UPDATES.enums)
 {'APPLICATION': 'APPS',
  'CHANGED_PROFILE': 'PRFU',
  'COMPANY': 'CMPY',
@@ -425,13 +428,13 @@ The Invitation API allows your users to invite people they find in your applicat
 ```python
 from linkedin.models import LinkedInRecipient, LinkedInInvitation
 recipient = LinkedInRecipient(None, 'john.doe@python.org', 'John', 'Doe')
-print recipient.json
+print(recipient.json)
 {'person': {'_path': '/people/email=john.doe@python.org',
   'first-name': 'John',
   'last-name': 'Doe'}}
 
 invitation = LinkedInInvitation('Hello John', "What's up? Can I add you as a friend?", (recipient,), 'friend')
-print invitation.json
+print(invitation.json)
 {'body': "What's up? Can I add you as a friend?",
  'item-content': {'invitation-request': {'connect-type': 'friend'}},
  'recipients': {'values': [{'person': {'_path': '/people/email=john.doe@python.org',
